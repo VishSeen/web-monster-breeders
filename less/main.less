@@ -1,0 +1,267 @@
+// out: ../css/main.css
+
+//================================================================//
+//####################### ICON FONT ###########################//
+//================================================================//
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+//==================================================================//
+//####################### SOCIAL ICONS ############################//
+//================================================================//
+.demo-icon {
+      font-family: "fontello";
+      font-style: normal;
+      font-weight: normal;
+      speak: never;
+
+      display: inline-block;
+      text-decoration: inherit;
+      text-align: center;
+      /* opacity: .8; */
+
+      /* For safety - reset parent styles, that can break glyph codes*/
+      font-variant: normal;
+      text-transform: none;
+
+      /* fix buttons height, for twitter bootstrap */
+      line-height: 1em;
+
+      /* Animation center compensation - margins should be symmetric */
+      /* remove if not needed */
+      margin-left: .2em;
+
+      /* You can be more comfortable with increased icons size */
+      /* font-size: 120%; */
+
+      /* Font smoothing. That was taken from TWBS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+      /* Uncomment for 3D effect */
+      /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+  }
+
+//================================================================//
+//####################### COLOR ###########################//
+//================================================================//
+@primaryColor: #ffffff;
+@primaryDarkColor: #323232;
+@accentYellowColor: #FFBD59;
+
+@lightColor: #ffffff;
+@darkColor: #000000;
+
+@primaryFontColor: 0.9;
+@secondaryFontColor: 0.6;
+@tertiatyFontColor: 0.4;
+@navInactiveColor: 0.5;
+@hintColor: 0.37;
+@disabledColor: 0.2;
+
+//================================================================//
+//####################### FONTS ###########################//
+//================================================================//
+@montserratFont: 'Montserrat', sans-serif;
+@poppinsFont: 'Poppins', sans-serif;
+
+@montserratBold: 700;
+@montserratBlack: 800;
+@montserratBlacked: 900;
+
+@poppinsLight: 300;
+@poppinsRegular: 400;
+@poppinsMedium: 500;
+@poppinsSemiBold: 600;
+@poppinsBold: 700;
+@poppinsBlack: 900;
+
+//================================================================//
+//####################### VALUES ###########################//
+//================================================================//
+@xsmall:  ~"only screen and (min-width: 320px)";
+@small:  ~"only screen and (min-width: 375px)";
+@medium:  	~"only screen and (min-width: 768px)";
+@large:   	~"only screen and (min-width: 1366px)";
+@xlarge:  	~"only screen and (min-width: 1440px)";
+@xxlarge: 	~"only screen and (min-width: 2560px)";
+
+
+//================================================================//
+//####################### TRANSITIONS ###########################//
+//================================================================//
+@transNav: ease-in-out;
+@transFadeUpLogo: opacity 0.5s ease-out, transform 0.4s cubic-bezier(0, 0, 0.66, 1);
+
+//================================================================//
+//####################### GLOBAL STYLES ###########################//
+//================================================================//
+::selection {
+	color: @lightColor;
+}
+/* Scroller */
+::-webkit-scrollbar {
+  width: 8px;
+  display: none;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  // background: @scrollColor;
+}
+
+//================================================================//
+//################## ANIMATION CLASSES ###########################//
+//================================================================//
+.hide {
+  opacity: 0;
+}
+.hide.revealed {
+  opacity: 1;
+}
+
+.before-fade-up {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.before-fade-up.fade-up {
+  opacity: 1;
+  transform: translateY(0%);
+}
+//=================================================================//
+//######################## KEYFRAMES ###############################//
+//================================================================//
+
+
+//==================================================================//
+/*######################### HTML STARTING TAG #####################*/
+//=================================================================//
+html {
+  scroll-behavior: smooth;
+
+  body {
+    margin: 0;
+    padding: 0;
+    .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: grid;
+      grid-template-areas: "logo nav";
+      margin: 2rem 0;
+
+      .block-logo {
+        grid-area: logo;
+        align-self: center;
+        justify-self: start;
+        padding: 0 2rem;
+        a {
+          font-family: @montserratFont;
+          font-weight: @montserratBlack;
+          font-size: 1rem;
+          color: @darkColor;
+          text-decoration: none;
+        }
+      }
+      .block-nav {
+        padding: 0 2rem;
+        grid-area: nav;
+        align-self: center;
+        justify-self: end;
+        display: flex;
+        i {
+          transition: opacity 1s @transNav;
+          &:hover {
+            cursor: pointer;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      display: grid;
+      margin: 2rem 0;
+      .block-nav {
+        nav {
+          ul {
+            display: inline;
+            padding: 0;
+            li {
+              display: inline-block;
+              a {
+                color: @darkColor;
+                opacity: @secondaryFontColor;
+                font-family: @montserratFont;
+                font-weight: @montserratBold;
+                font-size: 0.8rem;
+                text-decoration: none;
+                padding: 1rem 2rem;
+                transition: opacity 0.8s @transNav;
+                &:hover {
+                  opacity: @primaryFontColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .splash-screen {
+      display: grid;
+      height: 100vh;
+      .block-logo {
+        align-self: center;
+        justify-self: center;
+        .block-text {
+          overflow: hidden;
+          text-align: center;
+          font-family: @montserratFont;
+          h3 {
+            font-size: 1.5rem;
+            font-weight: @montserratBold;
+            margin-bottom: 0;
+            transition: @transFadeUpLogo;
+          }
+          h1 {
+            color: @accentYellowColor;
+            font-size: 6rem;
+            font-weight: @montserratBlacked;
+            margin-top: 0;
+            transition: @transFadeUpLogo;
+            transition-delay: 150ms;
+          }
+        }
+      }
+    }
+/*######################### BODY ENDING TAG #####################*/
+  }
+/*######################### HTML ENDING TAG #####################*/
+}
