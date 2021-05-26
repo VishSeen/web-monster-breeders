@@ -420,6 +420,7 @@ html body header .block-left .block-logo .block-text {
   overflow: hidden;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
 }
 html body header .block-left .block-logo .block-text h3 {
   font-size: 1rem;
@@ -469,6 +470,7 @@ html body header .block-image {
 @media only screen and (min-width: 768px) {
   html body header .block-image {
     height: 60vh;
+    width: 25rem;
     top: 25%;
   }
 }
@@ -492,6 +494,7 @@ html body header .block-image .block-image-content {
 }
 @media only screen and (min-width: 768px) {
   html body header .block-image .block-image-content {
+    width: 25rem;
     height: 60vh;
   }
 }
@@ -507,7 +510,7 @@ html body header .block-image .block-image-content .block-img {
 html body header .block-image .block-image-content .block-img img {
   width: 15rem;
 }
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 768px) {
   html body header .block-image .block-image-content .block-img img {
     width: 25rem;
   }
