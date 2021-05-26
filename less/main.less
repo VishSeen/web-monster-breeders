@@ -65,11 +65,11 @@
   }
 
 //================================================================//
-//####################### COLOR ###########################//
+//####################### COLORS ###########################//
 //================================================================//
 @primaryColor: #ffffff;
-@primaryDarkColor: #323232;
-@accentYellowColor: #FFBD59;
+@primaryDarkColor: #2b2b2b;
+@accentYellowColor: #edb506;
 
 @lightColor: #ffffff;
 @darkColor: #000000;
@@ -183,52 +183,141 @@ ol, ul {
 
 a {
   text-decoration: none;
+  font-family: @montserratFont;
 }
 
 // text styles
-h1, h2 {}
-h3, h4 {
+h1, h2, h3, h4, h5, h6, p {
   font-family: @poppinsFont;
+}
+
+h1 {
+  font-weight: @poppinsBold;
+  font-size: 2rem;
+  margin: 0;
+  @media @medium {
+    font-size: 3rem;
+  }
+  @media @large {
+    font-size: 6rem;
+  }
+  @media @xlarge {
+    font-size: 7rem;
+  }
+  span {
+    -webkit-text-stroke: 1px @lightColor;
+    -webkit-text-fill-color: transparent;
+    @media @medium {
+      -webkit-text-stroke-width: 3px;
+    }
+  }
+}
+h3, h4 {
   font-weight: @poppinsMedium;
 }
+
 h5, h6 {}
 
 p {
-  font-family: @poppinsFont;
   font-weight: @poppinsLight;
+  font-size: 0.8rem;
+  @media @xlarge {
+    font-size: 1.3rem;
+  }
 }
 
 // contents styles
 main {
-  padding: 2rem 4rem;
   background: @primaryDarkColor;
 }
 
 section {
-  padding: 4rem 2rem;
-  text-align: center;
-  h3 {
-    color: @lightColor;
+  padding: 2rem 1rem;
+  text-align: left;
+  height: 100vh;
+  color: @lightColor;
+  display: grid;
+  grid-template-columns: 1fr;
+  @media @medium {
+    padding: 2rem;
   }
-  p {
-    color: @lightColor;
-    font-size: 0.8rem;
+  @media @large {
+    padding: 2rem 4rem;
+  }
+  .block-text {
+    grid-area: text;
+    align-self: center;
+    @media @medium {      
+      justify-content: center;
+    }
+  }
+  .block-image {
+    display: grid;
+    grid-area: img;
+    align-self: center;
+    justify-self: center;
+    img {
+      width: 95%;
+      justify-self: center;
+    }
+  }
+}
+section.content {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0;
+  @media @medium {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 2rem;
+  }
+}
+section.content.left {
+  grid-template-areas: "img"
+                        "text";
+  @media @medium {
+    grid-template-areas: "text img";
+  }
+  .block-image {
+    img {
+      justify-self: center;
+      @media @medium {
+        justify-self: end;
+      }
+    }
+  }
+}
+section.content.center {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "text";
+  .block-text {
+    text-align: center;
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
     @media @medium {
-      font-size: 1rem;
+      width: 75%;
     }
-    @media @xlarge {
-      font-size: 1.3rem;
-    }
+  }
+}
+section.content.right {
+  grid-template-areas: "img"
+                        "text";
+  @media @medium {
+    grid-template-areas: "img text";
   }
 }
 
 // customs styles
 .block-button {
+  margin-top: 2rem;
   a {
     background-color: @accentYellowColor;
     color: @lightColor;
     padding: 1rem 2rem;
-    font-family: @montserratFont;
     font-weight: @montserratBold;
     font-size: 0.6rem;
     transition: all 0.5s @transEaseIn;
@@ -244,6 +333,19 @@ section {
     }
   }
 }
+
+.parallaxe {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.parallaxe.happiness {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/parallaxe/parallaxe-happiness.jpg');
+}
+.parallaxe.cta {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/parallaxe/parallaxe-cta.jpg');
+}
+
 
 
 
@@ -277,7 +379,6 @@ html {
           padding: 0 2rem;
         }
         a {
-          font-family: @montserratFont;
           font-weight: @montserratBlack;
           font-size: 1rem;
           color: @darkColor;
@@ -310,7 +411,7 @@ html {
       margin: 2rem 0;
       z-index: 50;
       transition: all 1s @transEaseIn;
-      @media @medium {
+      @media @large {
         display: grid;
       }
       .block-nav {
@@ -327,7 +428,6 @@ html {
               a {
                 color: @lightColor;
                 opacity: @secondaryFontColor;
-                font-family: @montserratFont;
                 font-weight: @montserratBold;
                 font-size: 0.8rem;
                 padding: 1rem;
@@ -356,7 +456,7 @@ html {
       grid-template-rows: repeat(2, 65vh);
       height: 100vh;
 
-      @media @medium {
+      @media @large {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: 1fr;
       }
@@ -370,14 +470,17 @@ html {
         grid-row-end: 1;
         grid-column-start: 1;
         grid-column-end: 2;
-        @media @medium {
+        @media @large {
           grid-column-start: 1;
           grid-column-end: 1;
         }
         .block-logo {
-          align-self: center;
+          align-self: start;
           justify-self: center;
           transition: all 1s ease-in-out;
+          @media @large {
+            align-self: center;
+          }
           .block-text {
             overflow: hidden;
             text-align: center;
@@ -423,13 +526,15 @@ html {
         display: grid;
         margin: auto;
         @media @medium {
-          height: 100vh;
-          width: 15rem;
-          bottom: unset;
-          margin: 0 auto;
+          height: 60vh;
+          top: 25%;
         }
         @media @large {
           width: 30vw;
+          height: 100vh;
+          bottom: unset;
+          top: 0;
+          margin: 0 auto;
         }
 
         .block-image-content {
@@ -441,10 +546,9 @@ html {
           height: 45vh;
           transition: all 2s @transEaseINOut;
           @media @medium {
-            width: 15rem;
             height: 60vh;
           }
-          @media @large {
+          @media @xlarge {
             width: 25rem;
             height: 75vh;
           }
@@ -467,7 +571,7 @@ html {
         background: @primaryDarkColor;
         display: grid;
         padding: 2rem;
-        @media @medium {
+        @media @large {
           width: 50vw;
           grid-column-start: 2;
           grid-column-end: 2;
@@ -475,23 +579,25 @@ html {
           grid-row-end: 1;
         }
         .block-content {
-          align-self: center;
+          align-self: end;
           justify-self: center;
           margin-left: 0;
           display: flex;
           flex-direction: column;
           align-items: center;
-          @media @medium {
-            margin-left: 7rem;
-            align-items: flex-start;
-          }
           @media @large {
             margin-left: 10rem;
+            align-self: center;
+            align-items: flex-start;
           }
 
           .block-text {
             align-self: center;
             justify-self: center;
+            text-align: center;
+            @media @large {
+              text-align: left;
+            }
             h3 {
               color: @lightColor;
               font-size: 1rem;
@@ -499,6 +605,9 @@ html {
                 font-size: 1.3rem;
               }
               @media @xlarge {
+                font-size: 1.8rem;
+              }
+              @media @xxlarge {
                 font-size: 2.3rem;
               }
             }
@@ -512,6 +621,33 @@ html {
 
     main {
       display: none;
+    }
+
+    footer {
+      display: grid;
+      background: @accentYellowColor;
+      color: @primaryDarkColor;
+      padding: 0.5rem 1rem;
+      @media @medium {
+        padding: 1rem;
+      }
+      .block-text {
+        justify-self: center;
+        p {
+          font-size: 0.7rem;
+          @media @xlarge {
+            font-size: 0.8rem;
+          }
+        }
+        a {
+          text-decoration: underline;
+          color: @primaryDarkColor;
+          transition: all 0.6s @transEaseOut;
+          &:hover {
+            color: @lightColor;
+          }
+        }
+      }
     }
 /*######################### BODY ENDING TAG #####################*/
   }

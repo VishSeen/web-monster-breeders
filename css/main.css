@@ -78,46 +78,160 @@ ul {
 }
 a {
   text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
 }
+h1,
+h2,
 h3,
-h4 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-}
+h4,
+h5,
+h6,
 p {
   font-family: 'Poppins', sans-serif;
-  font-weight: 300;
 }
-main {
-  padding: 2rem 4rem;
-  background: #323232;
-}
-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-section h3 {
-  color: #ffffff;
-}
-section p {
-  color: #ffffff;
-  font-size: 0.8rem;
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0;
 }
 @media only screen and (min-width: 768px) {
-  section p {
-    font-size: 1rem;
+  h1 {
+    font-size: 3rem;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  h1 {
+    font-size: 6rem;
   }
 }
 @media only screen and (min-width: 1440px) {
-  section p {
+  h1 {
+    font-size: 7rem;
+  }
+}
+h1 span {
+  -webkit-text-stroke: 1px #ffffff;
+  -webkit-text-fill-color: transparent;
+}
+@media only screen and (min-width: 768px) {
+  h1 span {
+    -webkit-text-stroke-width: 3px;
+  }
+}
+h3,
+h4 {
+  font-weight: 500;
+}
+p {
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+@media only screen and (min-width: 1440px) {
+  p {
     font-size: 1.3rem;
   }
 }
+main {
+  background: #2b2b2b;
+}
+section {
+  padding: 2rem 1rem;
+  text-align: left;
+  height: 100vh;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media only screen and (min-width: 768px) {
+  section {
+    padding: 2rem;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  section {
+    padding: 2rem 4rem;
+  }
+}
+section .block-text {
+  grid-area: text;
+  align-self: center;
+}
+@media only screen and (min-width: 768px) {
+  section .block-text {
+    justify-content: center;
+  }
+}
+section .block-image {
+  display: grid;
+  grid-area: img;
+  align-self: center;
+  justify-self: center;
+}
+section .block-image img {
+  width: 95%;
+  justify-self: center;
+}
+section.content {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0;
+}
+@media only screen and (min-width: 768px) {
+  section.content {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 2rem;
+  }
+}
+section.content.left {
+  grid-template-areas: "img" "text";
+}
+@media only screen and (min-width: 768px) {
+  section.content.left {
+    grid-template-areas: "text img";
+  }
+}
+section.content.left .block-image img {
+  justify-self: center;
+}
+@media only screen and (min-width: 768px) {
+  section.content.left .block-image img {
+    justify-self: end;
+  }
+}
+section.content.center {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "text";
+}
+section.content.center .block-text {
+  text-align: center;
+  width: 90%;
+  justify-self: center;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+}
+@media only screen and (min-width: 768px) {
+  section.content.center .block-text {
+    width: 75%;
+  }
+}
+section.content.right {
+  grid-template-areas: "img" "text";
+}
+@media only screen and (min-width: 768px) {
+  section.content.right {
+    grid-template-areas: "img text";
+  }
+}
+.block-button {
+  margin-top: 2rem;
+}
 .block-button a {
-  background-color: #FFBD59;
+  background-color: #edb506;
   color: #ffffff;
   padding: 1rem 2rem;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 0.6rem;
   transition: all 0.5s ease-in;
@@ -133,8 +247,19 @@ section p {
   }
 }
 .block-button a:hover {
-  color: #323232;
+  color: #2b2b2b;
   background-color: #ffffff;
+}
+.parallaxe {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.parallaxe.happiness {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/parallaxe/parallaxe-happiness.jpg');
+}
+.parallaxe.cta {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/parallaxe/parallaxe-cta.jpg');
 }
 html {
   scroll-behavior: smooth;
@@ -172,7 +297,6 @@ html body .top-bar .block-logo {
   }
 }
 html body .top-bar .block-logo a {
-  font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 1rem;
   color: #000000;
@@ -205,7 +329,7 @@ html body .bottom-bar {
   z-index: 50;
   transition: all 1s ease-in;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1366px) {
   html body .bottom-bar {
     display: grid;
   }
@@ -226,7 +350,6 @@ html body .bottom-bar .block-nav nav ul li {
 html body .bottom-bar .block-nav nav ul li a {
   color: #ffffff;
   opacity: 0.6;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 0.8rem;
   padding: 1rem;
@@ -253,7 +376,7 @@ html body header {
   grid-template-rows: repeat(2, 65vh);
   height: 100vh;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1366px) {
   html body header {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -269,16 +392,21 @@ html body header .block-left {
   grid-column-start: 1;
   grid-column-end: 2;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1366px) {
   html body header .block-left {
     grid-column-start: 1;
     grid-column-end: 1;
   }
 }
 html body header .block-left .block-logo {
-  align-self: center;
+  align-self: start;
   justify-self: center;
   transition: all 1s ease-in-out;
+}
+@media only screen and (min-width: 1366px) {
+  html body header .block-left .block-logo {
+    align-self: center;
+  }
 }
 html body header .block-left .block-logo .block-text {
   overflow: hidden;
@@ -302,7 +430,7 @@ html body header .block-left .block-logo .block-text h3 {
   }
 }
 html body header .block-left .block-logo .block-text h1 {
-  color: #FFBD59;
+  color: #edb506;
   font-size: 3rem;
   font-weight: 900;
   margin-top: 0;
@@ -332,15 +460,17 @@ html body header .block-image {
 }
 @media only screen and (min-width: 768px) {
   html body header .block-image {
-    height: 100vh;
-    width: 15rem;
-    bottom: unset;
-    margin: 0 auto;
+    height: 60vh;
+    top: 25%;
   }
 }
 @media only screen and (min-width: 1366px) {
   html body header .block-image {
     width: 30vw;
+    height: 100vh;
+    bottom: unset;
+    top: 0;
+    margin: 0 auto;
   }
 }
 html body header .block-image .block-image-content {
@@ -354,11 +484,10 @@ html body header .block-image .block-image-content {
 }
 @media only screen and (min-width: 768px) {
   html body header .block-image .block-image-content {
-    width: 15rem;
     height: 60vh;
   }
 }
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1440px) {
   html body header .block-image .block-image-content {
     width: 25rem;
     height: 75vh;
@@ -379,11 +508,11 @@ html body header .block-right {
   width: 100vw;
   grid-row-start: 2;
   grid-row-end: 2;
-  background: #323232;
+  background: #2b2b2b;
   display: grid;
   padding: 2rem;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1366px) {
   html body header .block-right {
     width: 50vw;
     grid-column-start: 2;
@@ -393,27 +522,29 @@ html body header .block-right {
   }
 }
 html body header .block-right .block-content {
-  align-self: center;
+  align-self: end;
   justify-self: center;
   margin-left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-@media only screen and (min-width: 768px) {
-  html body header .block-right .block-content {
-    margin-left: 7rem;
-    align-items: flex-start;
-  }
-}
 @media only screen and (min-width: 1366px) {
   html body header .block-right .block-content {
     margin-left: 10rem;
+    align-self: center;
+    align-items: flex-start;
   }
 }
 html body header .block-right .block-content .block-text {
   align-self: center;
   justify-self: center;
+  text-align: center;
+}
+@media only screen and (min-width: 1366px) {
+  html body header .block-right .block-content .block-text {
+    text-align: left;
+  }
 }
 html body header .block-right .block-content .block-text h3 {
   color: #ffffff;
@@ -426,6 +557,11 @@ html body header .block-right .block-content .block-text h3 {
 }
 @media only screen and (min-width: 1440px) {
   html body header .block-right .block-content .block-text h3 {
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 2560px) {
+  html body header .block-right .block-content .block-text h3 {
     font-size: 2.3rem;
   }
 }
@@ -434,4 +570,34 @@ html body header .block-right .block-content .block-button {
 }
 html body main {
   display: none;
+}
+html body footer {
+  display: grid;
+  background: #edb506;
+  color: #2b2b2b;
+  padding: 0.5rem 1rem;
+}
+@media only screen and (min-width: 768px) {
+  html body footer {
+    padding: 1rem;
+  }
+}
+html body footer .block-text {
+  justify-self: center;
+}
+html body footer .block-text p {
+  font-size: 0.7rem;
+}
+@media only screen and (min-width: 1440px) {
+  html body footer .block-text p {
+    font-size: 0.8rem;
+  }
+}
+html body footer .block-text a {
+  text-decoration: underline;
+  color: #2b2b2b;
+  transition: all 0.6s ease-out;
+}
+html body footer .block-text a:hover {
+  color: #ffffff;
 }
