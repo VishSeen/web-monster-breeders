@@ -35,7 +35,6 @@
       font-family: "fontello";
       font-style: normal;
       font-weight: normal;
-      speak: never;
 
       display: inline-block;
       text-decoration: inherit;
@@ -234,11 +233,12 @@ main {
 section {
   padding: 2rem 1rem;
   text-align: left;
-  height: 100vh;
+  height: 75vh;
   color: @lightColor;
   display: grid;
   grid-template-columns: 1fr;
   @media @medium {
+    height: 100vh;
     padding: 2rem;
   }
   @media @large {
