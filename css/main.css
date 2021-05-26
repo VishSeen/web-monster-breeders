@@ -225,6 +225,14 @@ section.content.right {
     grid-template-areas: "img text";
   }
 }
+section.content.right .block-image img {
+  justify-self: center;
+}
+@media only screen and (min-width: 768px) {
+  section.content.right .block-image img {
+    justify-self: end;
+  }
+}
 .block-button {
   margin-top: 2rem;
 }

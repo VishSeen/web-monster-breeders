@@ -309,6 +309,14 @@ section.content.right {
   @media @medium {
     grid-template-areas: "img text";
   }
+  .block-image {
+    img {
+      justify-self: center;
+      @media @medium {
+        justify-self: end;
+      }
+    }
+  }
 }
 
 // customs styles
