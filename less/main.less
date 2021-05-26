@@ -113,13 +113,19 @@
 //####################### TRANSITIONS ###########################//
 //================================================================//
 @transNav: ease-in-out;
-@transFadeUpLogo: opacity 0.5s ease-out, transform 0.4s cubic-bezier(0, 0, 0.66, 1);
+@transFadeUpLogo: opacity 1.2s ease-in, transform 0.8s cubic-bezier(0, 0, 0.66, 1);
+
+@transEaseIn: ease-in;
+@transEaseOut: ease-out;
+@transEaseINOut: ease-in-out;
+
+@transCubicFastIn: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 //================================================================//
 //####################### GLOBAL STYLES ###########################//
 //================================================================//
 ::selection {
-	color: @lightColor;
+	// color: @lightColor;
 }
 /* Scroller */
 ::-webkit-scrollbar {
@@ -160,40 +166,134 @@
 //==================================================================//
 /*######################### HTML STARTING TAG #####################*/
 //=================================================================//
+// - global styles
+// - texts
+// - contents
+// - customs
+// - page styles
+
+// globals
+* {
+  box-sizing: border-box;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+// text styles
+h1, h2 {}
+h3, h4 {
+  font-family: @poppinsFont;
+  font-weight: @poppinsMedium;
+}
+h5, h6 {}
+
+p {
+  font-family: @poppinsFont;
+  font-weight: @poppinsLight;
+}
+
+// contents styles
+main {
+  padding: 2rem 4rem;
+  background: @primaryDarkColor;
+}
+
+section {
+  padding: 4rem 2rem;
+  text-align: center;
+  h3 {
+    color: @lightColor;
+  }
+  p {
+    color: @lightColor;
+    font-size: 0.8rem;
+    @media @medium {
+      font-size: 1rem;
+    }
+    @media @xlarge {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// customs styles
+.block-button {
+  a {
+    background-color: @accentYellowColor;
+    color: @lightColor;
+    padding: 1rem 2rem;
+    font-family: @montserratFont;
+    font-weight: @montserratBold;
+    font-size: 0.6rem;
+    transition: all 0.5s @transEaseIn;
+    @media @medium {
+      font-size: 0.8rem;
+    }
+    @media @xlarge {
+      padding: 1rem 3rem;
+    }
+    &:hover {
+      color: @primaryDarkColor;
+      background-color: @lightColor;
+    }
+  }
+}
+
+
+
+
+// page style
 html {
   scroll-behavior: smooth;
 
   body {
     margin: 0;
     padding: 0;
+
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
+      z-index: 50;
       display: grid;
       grid-template-areas: "logo nav";
-      margin: 2rem 0;
-
+      margin: 1rem 0;
+      transition: all 1s @transEaseIn;
+      @media @medium {
+        margin: 2rem 0;
+      }
       .block-logo {
         grid-area: logo;
         align-self: center;
         justify-self: start;
-        padding: 0 2rem;
+        padding: 0 1rem;
+        @media @medium {
+          padding: 0 2rem;
+        }
         a {
           font-family: @montserratFont;
           font-weight: @montserratBlack;
           font-size: 1rem;
           color: @darkColor;
-          text-decoration: none;
         }
       }
       .block-nav {
-        padding: 0 2rem;
+        padding: 0 1rem;
         grid-area: nav;
         align-self: center;
         justify-self: end;
         display: flex;
+        @media @medium {
+          padding: 0 2rem;
+        }
         i {
+          color: @lightColor;
           transition: opacity 1s @transNav;
           &:hover {
             cursor: pointer;
@@ -206,24 +306,41 @@ html {
     .bottom-bar {
       position: fixed;
       bottom: 0;
-      display: grid;
+      display: none;
       margin: 2rem 0;
+      z-index: 50;
+      transition: all 1s @transEaseIn;
+      @media @medium {
+        display: grid;
+      }
       .block-nav {
         nav {
           ul {
             display: inline;
             padding: 0;
+            margin-left: 1.5rem;
+            @media @large {
+              margin-left: 0;
+            }
             li {
               display: inline-block;
               a {
-                color: @darkColor;
+                color: @lightColor;
                 opacity: @secondaryFontColor;
                 font-family: @montserratFont;
                 font-weight: @montserratBold;
                 font-size: 0.8rem;
-                text-decoration: none;
-                padding: 1rem 2rem;
+                padding: 1rem;
                 transition: opacity 0.8s @transNav;
+                @media @medium {
+                  padding: 1rem 0.8rem;
+                  font-size: 0.65rem;
+                }
+                @media @large {
+                  padding: 1rem 2rem;
+                  font-size: 0.8rem;
+                  color: @darkColor;
+                }
                 &:hover {
                   opacity: @primaryFontColor;
                 }
@@ -234,32 +351,167 @@ html {
       }
     }
 
-    .splash-screen {
+    header {
       display: grid;
+      grid-template-rows: repeat(2, 65vh);
       height: 100vh;
-      .block-logo {
-        align-self: center;
-        justify-self: center;
-        .block-text {
-          overflow: hidden;
-          text-align: center;
-          font-family: @montserratFont;
-          h3 {
-            font-size: 1.5rem;
-            font-weight: @montserratBold;
-            margin-bottom: 0;
-            transition: @transFadeUpLogo;
-          }
-          h1 {
-            color: @accentYellowColor;
-            font-size: 6rem;
-            font-weight: @montserratBlacked;
-            margin-top: 0;
-            transition: @transFadeUpLogo;
-            transition-delay: 150ms;
+
+      @media @medium {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+      }
+
+      .block-left {
+        width: 100vw;
+        padding: 2rem;
+        display: grid;
+        transition: width 1.5s ease-in-out;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        @media @medium {
+          grid-column-start: 1;
+          grid-column-end: 1;
+        }
+        .block-logo {
+          align-self: center;
+          justify-self: center;
+          transition: all 1s ease-in-out;
+          .block-text {
+            overflow: hidden;
+            text-align: center;
+            font-family: @montserratFont;
+            h3 {
+              font-size: 1rem;
+              font-weight: @montserratBold;
+              margin-bottom: 0;
+              transition: @transFadeUpLogo;
+              @media @medium {
+                font-size: 1.5rem;
+              }
+              @media @large {
+                font-size: 2rem;
+              }
+            }
+            h1 {
+              color: @accentYellowColor;
+              font-size: 3rem;
+              font-weight: @montserratBlacked;
+              margin-top: 0;
+              transition: @transFadeUpLogo;
+              transition-delay: 100ms;
+              @media @medium {
+                font-size: 6rem;
+              }
+              @media @large {
+                font-size: 10rem;
+              }
+            }
           }
         }
       }
+
+      .block-image {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 15rem;
+        height: 20vh;
+        display: grid;
+        margin: auto;
+        @media @medium {
+          height: 100vh;
+          width: 15rem;
+          bottom: unset;
+          margin: 0 auto;
+        }
+        @media @large {
+          width: 30vw;
+        }
+
+        .block-image-content {
+          display: none;
+          align-self: center;
+          justify-self: center;
+          overflow: hidden;
+          width: 15rem;
+          height: 45vh;
+          transition: all 2s @transEaseINOut;
+          @media @medium {
+            width: 15rem;
+            height: 60vh;
+          }
+          @media @large {
+            width: 25rem;
+            height: 75vh;
+          }
+          .block-img {
+            position: relative;
+            img {
+              width: 15rem;
+              @media @large {
+                width: 25rem;
+              }
+            }
+          }
+        }
+      }
+
+      .block-right {
+        width: 100vw;
+        grid-row-start: 2;
+        grid-row-end: 2;
+        background: @primaryDarkColor;
+        display: grid;
+        padding: 2rem;
+        @media @medium {
+          width: 50vw;
+          grid-column-start: 2;
+          grid-column-end: 2;
+          grid-row-start: 1;
+          grid-row-end: 1;
+        }
+        .block-content {
+          align-self: center;
+          justify-self: center;
+          margin-left: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          @media @medium {
+            margin-left: 7rem;
+            align-items: flex-start;
+          }
+          @media @large {
+            margin-left: 10rem;
+          }
+
+          .block-text {
+            align-self: center;
+            justify-self: center;
+            h3 {
+              color: @lightColor;
+              font-size: 1rem;
+              @media @large {
+                font-size: 1.3rem;
+              }
+              @media @xlarge {
+                font-size: 2.3rem;
+              }
+            }
+          }
+          .block-button {
+            margin-top: 2rem;
+          }
+        }
+      }
+    }
+
+    main {
+      display: none;
     }
 /*######################### BODY ENDING TAG #####################*/
   }
