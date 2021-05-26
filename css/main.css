@@ -381,7 +381,7 @@ html body .bottom-bar .block-nav nav ul li a:hover {
 }
 html body header {
   display: grid;
-  grid-template-rows: repeat(2, 65vh);
+  grid-template-rows: repeat(2, 57vh);
   height: 100vh;
 }
 @media only screen and (min-width: 1366px) {
@@ -407,7 +407,7 @@ html body header .block-left {
   }
 }
 html body header .block-left .block-logo {
-  align-self: start;
+  align-self: center;
   justify-self: center;
   transition: all 1s ease-in-out;
 }
