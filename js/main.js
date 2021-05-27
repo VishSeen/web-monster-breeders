@@ -1,32 +1,41 @@
 ////////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ////////////////////////////////////////////////////////////////////////////////
+// global variables
+let isSideMenuOpen = false;
+const icMenuClose = 'close';
+const icMenuOpen = 'menu';
+
 const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
 const isTab = /Tablet|iPad/i.test(navigator.userAgent);
 
 // medias breakpoint
-const mediaMedium = window.matchMedia('(min-width: 1366px)');
+const mediaMedium = window.matchMedia('(min-width: 768px)');
 const mediaLarge = window.matchMedia('(min-width: 1366px)');
 
 
 // animations classes name
 const fadeUp = "fade-up";
 const hide = "hide";
+const revealed = 'revealed'
+const slideLeft = "slide-left"
 
 
 // styling dom dimens
 let blockLeftWidth = 100;
-let blockImageContentHeight = 45; /** TO CHANGE FOR MEDIA QUERY VAL */
+let blockImageContentHeight = 45;
 
-if (mediaLarge.matches) {
+if (mediaMedium.matches) {
+    blockImageContentHeight = 60;
+    blockLeftWidth = 50;
+    console.log("768 >");
+} else if (mediaLarge.matches) {
     blockImageContentHeight = 60;
     blockLeftWidth = 50;
     console.log("1366 >");
 }
-
-
-
 ///////////////////////////////////////////////////////////////////////////////
+
 
 
 //============================================================================//
@@ -100,12 +109,50 @@ setTimeout(() => {
 
 // 7. Animate Hero Image 
 changeHeroImage();
+///////////////////////////////////////////////////////////////////////////////
 
 
 
 ////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// ELEMENT EVENT //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+function openSideMenu() {
+    const sideBar = document.getElementsByClassName('side-bar')[0];
+    const sideBarMenu = document.getElementsByClassName('side-bar-menu')[0];
+    const menuIc = document.querySelectorAll('.top-bar .block-nav i')[0];
+    menuIc.style.pointerEvents = 'none';
+
+    if (isSideMenuOpen) {
+        animateSideMenuIcon(false);
+
+        sideBar.classList.remove(revealed);
+        sideBarMenu.classList.remove(slideLeft);
+
+        setTimeout(() => {
+            sideBar.style.display = 'none';
+            menuIc.style.pointerEvents = 'all';
+        }, 650);
+
+        isSideMenuOpen = false;
+    } else {
+        animateSideMenuIcon(true);
+
+        sideBar.style.display = 'block';
+
+        setTimeout(() => {
+            sideBar.classList.add(revealed);
+            sideBarMenu.classList.add(slideLeft);
+        }, 200);
+
+        setTimeout(() => {
+            menuIc.style.pointerEvents = 'all';
+        }, 500);
+
+
+        isSideMenuOpen = true;
+    }
+}
+///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -119,6 +166,15 @@ changeHeroImage();
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////FUNCTIONS///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+function animateSideMenuIcon(open) {
+    const menuIc = document.querySelectorAll('.top-bar .block-nav i')[0];
+
+    if (open) {
+        menuIc.textContent = icMenuClose;
+    } else {
+        menuIc.textContent = icMenuOpen;
+    }
+}
 /** SIMPLE CAROUSEL
  * Switch between pictures based on their IDs in the 'hero' folder.
  */
@@ -183,3 +239,4 @@ function changeHeroImage() {
         }, 5500);
     }, 7000);
 }
+///////////////////////////////////////////////////////////////////////////////
