@@ -211,15 +211,19 @@ h1 {
     }
   }
 }
-h3, h4 {
+h3, h4, h5, h6 {
   font-weight: @poppinsMedium;
 }
-
-h5, h6 {}
 
 p {
   font-weight: @poppinsLight;
   font-size: 0.8rem;
+  @media @medium {
+    font-size: 1rem;
+  }
+  @media @large {
+    font-size: 1.2rem;
+  }
   @media @xlarge {
     font-size: 1.3rem;
   }
@@ -256,9 +260,17 @@ section {
     grid-area: img;
     align-self: center;
     justify-self: center;
+    &:hover {
+      cursor: pointer;
+      img {
+        clip-path: polygon(10px 10px, calc(100% - 10px) 10px, calc(100% - 10px) calc(100% - 10px), 10px calc(100% - 10px));
+      }
+    }
     img {
       width: 95%;
       justify-self: center;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      transition: clip-path .2s @transEaseINOut,-webkit-clip-path .2s @transEaseINOut;
     }
   }
 }
@@ -276,7 +288,7 @@ section.content {
 section.content.left {
   grid-template-areas: "img"
                         "text";
-  @media @medium {
+  @media @large {
     grid-template-areas: "text img";
   }
   .block-image {
@@ -307,7 +319,7 @@ section.content.center {
 section.content.right {
   grid-template-areas: "img"
                         "text";
-  @media @medium {
+  @media @large {
     grid-template-areas: "img text";
   }
   .block-image {
@@ -391,6 +403,12 @@ html {
           font-weight: @montserratBlack;
           font-size: 1rem;
           color: @darkColor;
+          @media @xlarge {
+            font-size: 1.3rem;
+          }
+          @media @xxlarge {
+            font-size: 1.8rem;
+          }
         }
       }
       .block-nav {
@@ -404,9 +422,16 @@ html {
         }
         i {
           color: @darkColor;
-          transition: opacity 1s @transNav;
+          transition: opacity 0.2s @transNav;
+          font-size: 1.3rem;
+          @media @medium {
+            font-size: 1.6rem;
+          }
           @media @large {
             color: @lightColor;
+          }
+          @media @xxlarge {
+            font-size: 2.5rem;
           }
           &:hover {
             cursor: pointer;
@@ -453,6 +478,9 @@ html {
                   font-size: 0.8rem;
                   color: @darkColor;
                 }
+                @media @xxlarge {
+                  font-size: 1rem;
+                }
                 &:hover {
                   opacity: @primaryFontColor;
                 }
@@ -461,6 +489,17 @@ html {
           }
         }
       }
+    }
+
+    .side-bar {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: @accentYellowColor;
+      height: 100vh;
+      width: 50vw;
+      z-index: 49;
     }
 
     header {
@@ -483,8 +522,11 @@ html {
         grid-column-start: 1;
         grid-column-end: 2;
         @media @large {
+          // width: 50vw;
           grid-column-start: 1;
           grid-column-end: 1;
+          grid-row-start: 1;
+          grid-row-end: 1;
         }
         .block-logo {
           align-self: start;
@@ -558,7 +600,7 @@ html {
           overflow: hidden;
           width: 15rem;
           height: 45vh;
-          transition: all 2s @transEaseINOut;
+          transition: all 1s @transEaseINOut;
           @media @medium {
             width: 25rem;
           }

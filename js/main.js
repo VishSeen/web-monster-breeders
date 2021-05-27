@@ -4,18 +4,24 @@
 const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
 const isTab = /Tablet|iPad/i.test(navigator.userAgent);
 
+// medias breakpoint
+const mediaMedium = window.matchMedia('(min-width: 1366px)');
+const mediaLarge = window.matchMedia('(min-width: 1366px)');
+
+
+// animations classes name
 const fadeUp = "fade-up";
 const hide = "hide";
 
 
-const blockLeftWidth = 50;
+// styling dom dimens
+let blockLeftWidth = 100;
+let blockImageContentHeight = 45; /** TO CHANGE FOR MEDIA QUERY VAL */
 
-var blockImageContentHeight = 45; /** TO CHANGE FOR MEDIA QUERY VAL */
-// if (isTab == true) {
-//     blockImageContentHeight = 60;
-// }
-if (isMobile == false) {
+if (mediaLarge.matches) {
     blockImageContentHeight = 60;
+    blockLeftWidth = 50;
+    console.log("1366 >");
 }
 
 
@@ -48,6 +54,8 @@ setTimeout(() => {
 setTimeout(() => {
     if (isMobile == false) {
         blockLeft.style.width = blockLeftWidth + 'vw';
+    } else {
+        blockLeft.style.width = 50 + 'vw';
     }
 
     blockImageContent.style.display = 'block';
@@ -77,8 +85,8 @@ setTimeout(() => {
 // 6. BlockLogo h1 reduce size  
 setTimeout(() => {
     let textSize = parseInt(window.getComputedStyle(logoH1).fontSize);
-    // let valToSub = parseInt(window.getComputedStyle(blockLeft).padding);
-    let newSize = textSize - 50;
+    let valToSub = parseInt(window.getComputedStyle(blockLeft).padding);
+    let newSize = textSize - valToSub;
 
     logoH1.style.transition = 'all 1s ease-out';
 

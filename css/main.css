@@ -118,12 +118,24 @@ h1 span {
   }
 }
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-weight: 500;
 }
 p {
   font-weight: 300;
   font-size: 0.8rem;
+}
+@media only screen and (min-width: 768px) {
+  p {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  p {
+    font-size: 1.2rem;
+  }
 }
 @media only screen and (min-width: 1440px) {
   p {
@@ -167,9 +179,17 @@ section .block-image {
   align-self: center;
   justify-self: center;
 }
+section .block-image:hover {
+  cursor: pointer;
+}
+section .block-image:hover img {
+  clip-path: polygon(10px 10px, calc(100% - 10px) 10px, calc(100% - 10px) calc(100% - 10px), 10px calc(100% - 10px));
+}
 section .block-image img {
   width: 95%;
   justify-self: center;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 0.2s ease-in-out, -webkit-clip-path 0.2s ease-in-out;
 }
 section.content {
   grid-template-columns: 1fr;
@@ -187,7 +207,7 @@ section.content {
 section.content.left {
   grid-template-areas: "img" "text";
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1366px) {
   section.content.left {
     grid-template-areas: "text img";
   }
@@ -221,7 +241,7 @@ section.content.center .block-text {
 section.content.right {
   grid-template-areas: "img" "text";
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1366px) {
   section.content.right {
     grid-template-areas: "img text";
   }
@@ -310,6 +330,16 @@ html body .top-bar .block-logo a {
   font-size: 1rem;
   color: #000000;
 }
+@media only screen and (min-width: 1440px) {
+  html body .top-bar .block-logo a {
+    font-size: 1.3rem;
+  }
+}
+@media only screen and (min-width: 2560px) {
+  html body .top-bar .block-logo a {
+    font-size: 1.8rem;
+  }
+}
 html body .top-bar .block-nav {
   padding: 0 1rem;
   grid-area: nav;
@@ -324,11 +354,22 @@ html body .top-bar .block-nav {
 }
 html body .top-bar .block-nav i {
   color: #000000;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 1.3rem;
+}
+@media only screen and (min-width: 768px) {
+  html body .top-bar .block-nav i {
+    font-size: 1.6rem;
+  }
 }
 @media only screen and (min-width: 1366px) {
   html body .top-bar .block-nav i {
     color: #ffffff;
+  }
+}
+@media only screen and (min-width: 2560px) {
+  html body .top-bar .block-nav i {
+    font-size: 2.5rem;
   }
 }
 html body .top-bar .block-nav i:hover {
@@ -382,8 +423,23 @@ html body .bottom-bar .block-nav nav ul li a {
     color: #000000;
   }
 }
+@media only screen and (min-width: 2560px) {
+  html body .bottom-bar .block-nav nav ul li a {
+    font-size: 1rem;
+  }
+}
 html body .bottom-bar .block-nav nav ul li a:hover {
   opacity: 0.9;
+}
+html body .side-bar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #edb506;
+  height: 100vh;
+  width: 50vw;
+  z-index: 49;
 }
 html body header {
   display: grid;
@@ -410,6 +466,8 @@ html body header .block-left {
   html body header .block-left {
     grid-column-start: 1;
     grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
   }
 }
 html body header .block-left .block-logo {
@@ -496,7 +554,7 @@ html body header .block-image .block-image-content {
   overflow: hidden;
   width: 15rem;
   height: 45vh;
-  transition: all 2s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 @media only screen and (min-width: 768px) {
   html body header .block-image .block-image-content {
