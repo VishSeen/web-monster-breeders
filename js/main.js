@@ -111,6 +111,9 @@ changeHeroImage();
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////FUNCTIONS///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+/** SIMPLE CAROUSEL
+ * Switch between pictures based on their IDs in the 'hero' folder.
+ */
 function changeHeroImage() {
     let count = 1;
     let image = 'img/hero/hero-0';
@@ -160,15 +163,15 @@ function changeHeroImage() {
         console.log(imageRef);
 
         setTimeout(() => {
-            blockImageContent.style.height = 0;
-        }, 1500);
+            blockImageContent.style.opacity = 0;
+        }, 3000);
 
         setTimeout(() => {
             heroImage.src = imageRef + '.jpg';
-        }, 3500);
+        }, 5000);
 
         setTimeout(() => {
-            blockImageContent.style.height = blockImageContentHeight + 'vh';
-        }, 4000);
-    }, 5000);
+            blockImageContent.style.opacity = 1;
+        }, 5500);
+    }, 7000);
 }

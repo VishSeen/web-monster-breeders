@@ -198,9 +198,9 @@ h1 {
     font-size: 3rem;
   }
   @media @large {
-    font-size: 6rem;
+    font-size: 5rem;
   }
-  @media @xlarge {
+  @media @xxlarge {
     font-size: 7rem;
   }
   span {
@@ -231,8 +231,8 @@ main {
 }
 
 section {
+  text-align: center;
   padding: 2rem 1rem;
-  text-align: left;
   height: 75vh;
   color: @lightColor;
   display: grid;
@@ -266,6 +266,7 @@ section.content {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 0;
+  text-align: left;
   @media @medium {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
@@ -313,7 +314,7 @@ section.content.right {
     img {
       justify-self: center;
       @media @medium {
-        justify-self: end;
+        justify-self: start;
       }
     }
   }
@@ -402,8 +403,11 @@ html {
           padding: 0 2rem;
         }
         i {
-          color: @lightColor;
+          color: @darkColor;
           transition: opacity 1s @transNav;
+          @media @large {
+            color: @lightColor;
+          }
           &:hover {
             cursor: pointer;
             opacity: 0.5;
@@ -483,7 +487,7 @@ html {
           grid-column-end: 1;
         }
         .block-logo {
-          align-self: center;
+          align-self: start;
           justify-self: center;
           transition: all 1s ease-in-out;
           @media @large {
@@ -531,13 +535,13 @@ html {
         left: 0;
         right: 0;
         width: 15rem;
-        height: 20vh;
+        height: 30vh;
         display: grid;
         margin: auto;
         @media @medium {
-          height: 60vh;
           width: 25rem;
-          top: 25%;
+          height: 45vh;
+          top: 15%;
         }
         @media @large {
           width: 30vw;
@@ -557,7 +561,6 @@ html {
           transition: all 2s @transEaseINOut;
           @media @medium {
             width: 25rem;
-            height: 60vh;
           }
           @media @xlarge {
             width: 25rem;
@@ -611,9 +614,9 @@ html {
             }
             h3 {
               color: @lightColor;
-              font-size: 1rem;
+              font-size: 1.5rem;
               @media @large {
-                font-size: 1.3rem;
+                font-size: 2rem;
               }
               @media @xlarge {
                 font-size: 1.8rem;

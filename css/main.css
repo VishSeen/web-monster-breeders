@@ -100,10 +100,10 @@ h1 {
 }
 @media only screen and (min-width: 1366px) {
   h1 {
-    font-size: 6rem;
+    font-size: 5rem;
   }
 }
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 2560px) {
   h1 {
     font-size: 7rem;
   }
@@ -134,8 +134,8 @@ main {
   background: #2b2b2b;
 }
 section {
+  text-align: center;
   padding: 2rem 1rem;
-  text-align: left;
   height: 75vh;
   color: #ffffff;
   display: grid;
@@ -175,6 +175,7 @@ section.content {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 0;
+  text-align: left;
 }
 @media only screen and (min-width: 768px) {
   section.content {
@@ -230,7 +231,7 @@ section.content.right .block-image img {
 }
 @media only screen and (min-width: 768px) {
   section.content.right .block-image img {
-    justify-self: end;
+    justify-self: start;
   }
 }
 .block-button {
@@ -322,8 +323,13 @@ html body .top-bar .block-nav {
   }
 }
 html body .top-bar .block-nav i {
-  color: #ffffff;
+  color: #000000;
   transition: opacity 1s ease-in-out;
+}
+@media only screen and (min-width: 1366px) {
+  html body .top-bar .block-nav i {
+    color: #ffffff;
+  }
 }
 html body .top-bar .block-nav i:hover {
   cursor: pointer;
@@ -407,7 +413,7 @@ html body header .block-left {
   }
 }
 html body header .block-left .block-logo {
-  align-self: center;
+  align-self: start;
   justify-self: center;
   transition: all 1s ease-in-out;
 }
@@ -463,15 +469,15 @@ html body header .block-image {
   left: 0;
   right: 0;
   width: 15rem;
-  height: 20vh;
+  height: 30vh;
   display: grid;
   margin: auto;
 }
 @media only screen and (min-width: 768px) {
   html body header .block-image {
-    height: 60vh;
     width: 25rem;
-    top: 25%;
+    height: 45vh;
+    top: 15%;
   }
 }
 @media only screen and (min-width: 1366px) {
@@ -495,7 +501,6 @@ html body header .block-image .block-image-content {
 @media only screen and (min-width: 768px) {
   html body header .block-image .block-image-content {
     width: 25rem;
-    height: 60vh;
   }
 }
 @media only screen and (min-width: 1440px) {
@@ -559,11 +564,11 @@ html body header .block-right .block-content .block-text {
 }
 html body header .block-right .block-content .block-text h3 {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 @media only screen and (min-width: 1366px) {
   html body header .block-right .block-content .block-text h3 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 }
 @media only screen and (min-width: 1440px) {
