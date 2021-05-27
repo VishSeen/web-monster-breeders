@@ -434,12 +434,66 @@ html body .bottom-bar .block-nav nav ul li a:hover {
 html body .side-bar {
   position: fixed;
   right: 0;
+  left: 0;
   top: 0;
   bottom: 0;
-  background-color: #edb506;
-  height: 100vh;
-  width: 50vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
   z-index: 49;
+}
+html body .side-bar ul {
+  padding: 0 1rem;
+  display: flex;
+}
+@media only screen and (min-width: 1366px) {
+  html body .side-bar ul {
+    padding: 0 2rem;
+  }
+}
+html body .side-bar .side-bar-menu {
+  position: absolute;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  background-color: #edb506;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+@media only screen and (min-width: 768px) {
+  html body .side-bar .side-bar-menu {
+    width: 50vw;
+    padding: 1rem 2rem;
+    justify-content: space-around;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  html body .side-bar .side-bar-menu {
+    width: 30vw;
+  }
+}
+html body .side-bar .side-bar-menu .side-body ul {
+  flex-direction: column;
+}
+html body .side-bar .side-bar-menu .side-body ul li {
+  line-height: 2;
+}
+html body .side-bar .side-bar-menu .side-body ul li a {
+  font-size: 2rem;
+  color: #000000;
+}
+@media only screen and (min-width: 1366px) {
+  html body .side-bar .side-bar-menu .side-body ul li a {
+    font-size: 2.5rem;
+  }
+}
+html body .side-bar .side-bar-menu .side-footer .block-contact {
+  flex-direction: column;
+}
+html body .side-bar .side-bar-menu .side-footer .block-socials {
+  flex-direction: row;
 }
 html body header {
   display: grid;
